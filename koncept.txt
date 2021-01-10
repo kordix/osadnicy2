@@ -1,0 +1,10 @@
+-tabela users
+
+Stats:
+a)dane kolumnowo
+b)dane wierszowo - user_id,dana,wartość
+
+-Surowce, budynki
+-naliczanie surowców
+-hero
+-wymiana golda na surowce
