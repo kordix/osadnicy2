@@ -28,10 +28,8 @@ if(!isset($_SESSION['zalogowany'])){
     
     <div  class="container" id="app">
     <app></app>
-<button  @click="test">test</button>
-
-
-<read></read>
+    <button  @click="test">test</button>
+    <resourcetab></resourcetab>
 
 
 </div>
@@ -44,6 +42,8 @@ if(!isset($_SESSION['zalogowany'])){
 <?php include('../components/read.php') ?>
 <?php include('../components/app.php') ?>
 <?php include('../components/test.php') ?>
+<?php include('../components/resourcetab.php') ?>
+
 
 
 <script src="script.js"></script>

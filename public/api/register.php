@@ -12,7 +12,7 @@ $password = md5($dane->password);
 $query = "INSERT INTO users (login,password) VALUES ($login,'$password');";
 
 $query2 = "INSERT INTO `stats` (`id`, `wood`, `stone`, `iron`, `gold`, `woodLevel`, `stoneLevel`, `ironLevel`, `woodStore`, `stoneStore`, `ironStore`, `created_at`, `updated_at`, `stonefactor`, `woodfactor`, `goldfactor`, `ironfactor`, `heroLevel`, `heroQuest`, `questTime`, `questDTime`) VALUES
-(default, 150.00, 300.00, 300.00, 300.00, 1.00, 1.00, 1.00, 1, 1, 1, default, default, 0.01, 0.01, 0.01, 0.01, 1, '0', default, default);";
+(default, 300.00, 300.00, 300.00, 0, 1.00, 1.00, 1.00, 1, 1, 1, default, default, 0.01, 0.01, 0.01, 0.01, 1, '0', default, default);";
 
 $sth = $dbh->prepare($query);
 if ($sth->execute() == false) {

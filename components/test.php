@@ -1,5 +1,5 @@
 <script type="text/x-template" id="dupa">
-    <p>{{test}} </p>
+    <p>{{test2}} </p>
 </script>
 
 
@@ -8,7 +8,7 @@
         template: '#dupa',
         data() {
             return {
-                test: 'siemano'
+                test2: 'siemano'
             }
         }
     })
