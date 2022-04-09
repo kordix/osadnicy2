@@ -14,11 +14,15 @@ if(isset($_SESSION['zalogowany'])){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zaloguj</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
 </head>
-<body>
+<body style="margin-top:20px">
 
 
-<div id="app">
+<div id="app" class="container">
+<p>Witaj wędrowcze. Zaloguj się lub <a href="/register.php">zarejestruj</a></p>
+
 <label for="">Login</label>
 <input type="text" v-model="login">
 <label for="">Haslo</label>

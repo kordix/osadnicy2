@@ -13,16 +13,22 @@ if(isset($_SESSION['zalogowany'])){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zaloguj</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Osadnicy - rejestracja</title>
 </head>
-<body>
+<body style="margin-top:20px">
 
 
-<div id="app">
+
+<div id="app" class="container">
 <label for="">Login</label>
-<input type="text" v-model="login">
+<input type="text" v-model="login" AUTOCOMPLETE="off">
 <label for="">Haslo</label>
-<input type="password" v-model="password">
+<input type="password" v-model="password" AUTOCOMPLETE="off">
+<label for="">Powtórz hasło</label>
+
+<input type="password" v-model="password2" AUTOCOMPLETE="off">
+
 
 <button @click="register">Zarejestruj</button>
 
@@ -41,10 +47,15 @@ let app = new Vue({
     data:{
         login:'',
         password:'',
+        password2:'',
         error:''
     },
     methods:{
         register(){
+            if (this.password !== this.password2){
+                this.error = 'Hasła się nie zgadzają wpisz jeszcze raz';
+                return;
+            }
             let self = this;
             axios.post('api/register.php',{login:this.login,password:this.password}).then((res)=>{
                 console.log(res.data)
