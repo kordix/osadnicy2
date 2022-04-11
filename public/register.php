@@ -34,6 +34,7 @@ if(isset($_SESSION['zalogowany'])){
 
 <p><b>{{error}}</b></p>
 
+<p v-if="registered">Świetnie - zarejestrowano użytkownika {{loginregistered}} . Możesz się  <a href="/login.php">zalogować</a></p>
 
 
 </div>
@@ -46,9 +47,11 @@ let app = new Vue({
     el:'#app',
     data:{
         login:'',
+        loginregistered:'',
         password:'',
         password2:'',
-        error:''
+        error:'',
+        registered:false
     },
     methods:{
         register(){
@@ -59,6 +62,24 @@ let app = new Vue({
             let self = this;
             axios.post('api/register.php',{login:this.login,password:this.password}).then((res)=>{
                 console.log(res.data)
+
+         
+
+                if(res.data.trim() == 'SUCCESS'){
+                    self.registered = true;
+                    self.loginregistered = this.login;
+                    self.login = '';
+                    self.password = '';
+                    self.password2 = '';
+                    self.error = '';
+                }else if(res.data.trim() == 'NOCONNECTION'){
+                    self.error = 'BRAK POŁĄCZENIA';
+                }else if(res.data.trim() == 'BADLOGIN'){
+                    self.error = 'Zły login lub hasło';
+                    
+                }else{
+                    self.error = 'Wystąpił jakiś błąd';
+                }
               
             })
         }

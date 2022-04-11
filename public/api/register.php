@@ -23,6 +23,8 @@ if ($sth->execute() == false) {
 $sth = $dbh->prepare($query2);
 if ($sth->execute() == false) {
     echo 'error';
+} else {
+    echo 'SUCCESS';
 }
 
 ?>

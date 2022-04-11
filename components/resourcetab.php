@@ -36,7 +36,7 @@ Vue.component('resourcetab', {
          },
          updateResources(context){
              let self = this;
-             axios.get('/api/updatestats.php').then((res)=>console.log('update ukończony'));
+             axios.get('/api/updatestats.php').then((res)=>self.loadData());
          },
 
     },
