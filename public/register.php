@@ -21,6 +21,8 @@ if(isset($_SESSION['zalogowany'])){
 
 
 <div id="app" class="container">
+<p><b>Zarejestruj użytkownika</b></p>
+
 <label for="">Login</label>
 <input type="text" v-model="login" AUTOCOMPLETE="off">
 <label for="">Haslo</label>

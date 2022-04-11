@@ -27,21 +27,14 @@ if(!isset($_SESSION['zalogowany'])){
 <?php  include 'navbar.php' ?>
     
     <div  class="container" id="app">
-    <app></app>
-    <button  @click="test">test</button>
-    <resourcetab></resourcetab>
-
-
-</div>
+        <resourcetab></resourcetab>
+    </div>
 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
     
 
-<?php include('../components/read.php') ?>
-<?php include('../components/app.php') ?>
-<?php include('../components/test.php') ?>
 <?php include('../components/resourcetab.php') ?>
 
 

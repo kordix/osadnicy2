@@ -1,5 +1,7 @@
 <?php
 // if($_SERVER['REQUEST_METHOD'] != 'POST') return;
+session_start();
+
 
 require_once 'db.php';
 
@@ -11,17 +13,26 @@ $dane = json_decode(file_get_contents('php://input'));
 // $id = $dane->id;
 
 //REPLACE
-$query_run = $dbh->prepare("SELECT * FROM users join stats on users.id = stats.id where users.id = 1");
+$id = $_SESSION['id'];
+
+echo $id;
+
+$query = "SELECT users.id,users.login,stats.* FROM users join stats on users.id = stats.id where users.id = $id";
+
+echo $query;
+
+$query_run = $dbh->prepare($query);
 $query_run->execute();
+
+
 
 class dummy {}
 
 $rows = $query_run->fetchAll(PDO::FETCH_CLASS, "dummy");
 
+print_r($rows);
 
-$results=[];
 
-$id = 1;
 $time = $rows[0]->updated_at;
 
 $d1 = new DateTime($time);
@@ -43,29 +54,25 @@ $stonefactor = $rows[0]->stonefactor;
 $iron = $rows[0]->iron;
 $ironfactor = $rows[0]->ironfactor;
 
-$woodamount = $diffInSeconds * $woodfactor;
-$stoneamount = $diffInSeconds * $stonefactor;
-$ironamount = $diffInSeconds * $ironfactor;
+echo $diffInSeconds;
 
-$woodnew = $wood + $woodamount;
-$stonenew = $stone + $stoneamount;
-$ironamount = $iron + $ironamount;
+if ($diffInSeconds > 0) {
+    $woodamount = $diffInSeconds * $woodfactor;
+    $stoneamount = $diffInSeconds * $stonefactor;
+    $ironamount = $diffInSeconds * $ironfactor;
 
-
-
-
-$query2 = $dbh->prepare("update stats set wood= $woodnew, stone = $stonenew , iron = $ironamount , updated_at = now() where id = 1");
-$query2->execute();
-
-echo $query2;
+    $woodnew = $wood + $woodamount;
+    $stonenew = $stone + $stoneamount;
+    $ironamount = $iron + $ironamount;
 
 
 
-// echo $woodamount;
+
+    $query2 = $dbh->prepare("update stats set wood= $woodnew, stone = $stonenew , iron = $ironamount , updated_at = now() where id = $id");
+    $query2->execute();
+
+    echo $query2;
+}
 
 
-// Stat::find($id) ->update([
-    // 'wood' => $wood += $woodamount,
-    // 'stone' => $stone += $stoneamount,
-    // 'iron' => $iron += $ironamount,
-// ]);
+?>

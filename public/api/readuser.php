@@ -1,6 +1,9 @@
 <?php
 // if($_SERVER['REQUEST_METHOD'] != 'POST') return;
 
+session_start();
+
+
 require_once 'db.php';
 
 // $dbh = null;
@@ -11,7 +14,9 @@ $dane = json_decode(file_get_contents('php://input'));
 // $id = $dane->id;
 
 //REPLACE
-$query_run = $dbh->prepare("SELECT * FROM users join stats on users.id = stats.id where users.id = 1");
+$id = $_SESSION['id'];
+
+$query_run = $dbh->prepare("SELECT * FROM users join stats on users.id = stats.id where users.id = $id");
 $query_run->execute();
 
 class dummy {}

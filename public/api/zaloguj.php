@@ -21,6 +21,8 @@ $rows = $query_run->fetchAll(PDO::FETCH_CLASS, "dummy");
 
 if(count($rows)>0){
     $_SESSION['zalogowany'] = true;
+    $_SESSION['id'] = $rows[0]->id;
+
     echo 'ZALOGOWANY';
 }else{
     return 0;
