@@ -1,12 +1,15 @@
 let app = new Vue({
     data:{
-        obiekt:{tabela:'klienci', dane:{imie:'asdfdupa',nazwisko:'siema'},id:4},
-        wylogujshow:false
+        dane:{},
+        wylogujshow:false,
+        costs: {
+            woodUpgrade: [150, 100, 100],
+            ironUpgrade: [150, 100, 100],
+            stoneUpgrade: [100, 100, 100],
+        },
     },
     el:'#app',
     methods:{
-        test(){
-            axios.post('api/update.php', this.obiekt);
-        }
+   
     }
 })

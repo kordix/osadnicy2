@@ -32,7 +32,7 @@ Vue.component('resourcetab', {
     methods:{
         loadData(context){
             let self = this
-             axios.get('/api/readuser.php').then((res)=>self.dane = res.data);
+             axios.get('/api/readuser.php').then((res)=>{self.dane = res.data; this.$root.dane = this.dane});
          },
          updateResources(context){
              let self = this;
