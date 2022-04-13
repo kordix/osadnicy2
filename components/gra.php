@@ -53,19 +53,6 @@ data(){
         reset(){
             axios.patch('reset');
         },
-        checkMax(){
-            let self = this;
-            let resources=['wood','stone','iron'];
-            for(let i=0;i<resources.length;i++){
-                let operand = resources[i];
-                let max = self.dane[operand+'Store']*100+200;
-
-                if (self.dane[operand] > max){
-                    self.dane[operand]=max;
-                }
-
-            }
-        },
         resHack(){
             this.$store.dispatch('resHack');
 

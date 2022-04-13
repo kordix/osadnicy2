@@ -51,14 +51,14 @@
             upgradeMag(res){
                 let self = this;
 
-                let levelcalc=this.dane[res+'Store']+1;
+                let levelcalc=this.$root.dane[res+'Store']+1;
 
                 if(this.pay(100,100,100)==false){
                     console.log('działa zwrot');
                     return
                 }
 
-                axios.patch('upgrade',{[res+'Store']:levelcalc}).then((res)=>self.loadData());
+                axios.post('api/update.php',{id:this.$root.dane.id,tabela:'stats', dane:{[res+'Store']:levelcalc}}).then((res)=>self.$root.loadData());
 
             },
             upgrade(mine){
