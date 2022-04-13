@@ -36,6 +36,8 @@ if(!isset($_SESSION['zalogowany'])){
     
 
 <?php include('../components/resourcetab.php') ?>
+<?php include('../components/popover.php') ?>
+<?php include('../components/building.php') ?>
 <?php include('../components/wioska.php') ?>
 
 <?php include('../components/gra.php') ?>

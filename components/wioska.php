@@ -4,12 +4,12 @@
 <p>Twoja wioska  <span style="display:inline-block;margin-left:20px;color:red" v-if="log !=''" @click="log = ''">{{log}}</span> </p>
 <div id="wioska" style="background:url('images/pole.png');background-size:contain;width:500px;height:500px;position:relative">
 
-    <!-- <building :attr="'wood'" :left="50" :top="50" :width="100"></building> -->
-            <!-- <building :attr="'stone'" :left="200" :top="50" :width="100"></building> -->
-            <!-- <building :attr="'iron'" :left="200" :top="200" :width="100"></building> -->
-            <!-- <magazyn :attr="'wood'" :left="50" :top="350" :width="90"></magazyn> -->
-            <!-- <magazyn :attr="'stone'" :left="150" :top="350" :width="90"></magazyn> -->
-            <!-- <magazyn :attr="'iron'" :left="250" :top="350" :width="90"></magazyn> -->
+    <building :attr="'wood'" :left="50" :top="50" :width="100"></building>
+            <building :attr="'stone'" :left="200" :top="50" :width="100"></building>
+            <building :attr="'iron'" :left="200" :top="200" :width="100"></building>
+            <!-- <magazyn :attr="'wood'" :left="50" :top="350" :width="90"></magazyn>
+            <magazyn :attr="'stone'" :left="150" :top="350" :width="90"></magazyn>
+            <magazyn :attr="'iron'" :left="250" :top="350" :width="90"></magazyn> -->
 
 </div>
 
@@ -63,46 +63,44 @@
             },
             upgrade(mine){
                 let self = this;
-                let kosztwood = this.costs[mine+'Upgrade'][0];
-                let kosztstone = this.costs[mine+'Upgrade'][1];
-                let kosztiron = this.costs[mine+'Upgrade'][2];
+                let kosztwood = this.$root.costs[mine+'Upgrade'][0];
+                let kosztstone = this.$root.costs[mine+'Upgrade'][1];
+                let kosztiron = this.$root.costs[mine+'Upgrade'][2];
                 if(this.pay(kosztwood,kosztstone,kosztiron)==false){
                     return
                 }
 
-                let levelcalc = this.dane[mine+'Level']+1;
+                let levelcalc = this.$root.dane[mine+'Level']+1;
                 let factorcalc = levelcalc * 0.01;
 
-                axios.patch('upgrade',{[mine+'Level']:levelcalc,[mine+'factor']:factorcalc}).then((res)=>console.log('puszczony upgrade')).then((res)=>self.loadData());
+                axios.post('/api/update.php',{tabela:'stats',id:self.$root.dane.id, dane:{[mine+'Level']:levelcalc,[mine+'factor']:factorcalc}}).then((res)=>console.log('puszczony upgrade')).then((res)=>self.$root.loadData());
             },
             refresh(){
                 // let self = this;
                 // console.log('puszczamy update');
                 // axios.patch('update').then((res)=>console.log('update ukończony')).then((res)=>self.getData());
             },
-            resHack(){
-                // this.$store.commit('resHack');
-            },
+       
             pay(woodcost,stonecost,ironcost){
-                if(this.dane.wood < woodcost){
+                if(this.$root.dane.wood < woodcost){
                     this.log='Brakuje ci drewna';
                     return false
                 }
-                if(this.dane.stone < stonecost){
+                if(this.$root.dane.stone < stonecost){
                     this.log = 'Brakuje ci kamienia';
 
                     return false
                 }
-                if(this.dane.iron < ironcost){
+                if(this.$root.dane.iron < ironcost){
                     this.log = 'Brakuje ci żelaza' ;
 
                     return false
                 }
 
-                let woodcalc = this.dane.wood - woodcost;
-                let stonecalc = this.dane.stone - stonecost;
-                let ironcalc = this.dane.iron - ironcost;
-                axios.patch('upgrade',{wood:woodcalc,stone:stonecalc,iron:ironcalc}).then((res)=>console.log('zapłacono'));
+                let woodcalc = this.$root.dane.wood - woodcost;
+                let stonecalc = this.$root.dane.stone - stonecost;
+                let ironcalc = this.$root.dane.iron - ironcost;
+                axios.post('api/update.php',{id:this.$root.dane.id,tabela:'stats',dane:{wood:woodcalc,stone:stonecalc,iron:ironcalc}}).then((res)=>console.log('zapłacono'));
             }
     
         }

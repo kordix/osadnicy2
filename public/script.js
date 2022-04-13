@@ -10,6 +10,18 @@ let app = new Vue({
     },
     el:'#app',
     methods:{
+
+        loadData(){
+            location.reload();
+        },
+        resHack(){
+            // this.$store.commit('resHack');
+            this.$root.dane.wood = 500;
+            this.$root.dane.stone = 500;
+            this.$root.dane.iron = 500;
+
+
+        },
    
     }
 })

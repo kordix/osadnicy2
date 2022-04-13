@@ -17,3 +17,5 @@ Vue.component('dupa', {
 
 
 });
+
+</script>
