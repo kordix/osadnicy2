@@ -41,7 +41,7 @@ $d2 = new DateTime();
 echo date();
 
 $interval = $d1->diff($d2);
-$diffInSeconds = $interval->s + $interval->i * 60 + $interval->h * 3600; 
+$diffInSeconds = $interval->s + $interval->i * 60 + $interval->h * 3600 + $interval->d * 3600 * 24; 
 
 // echo $interval->i ;
 
