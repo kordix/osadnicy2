@@ -13,15 +13,15 @@
 
 </div>
 
-<p>Tartak:<span style="font-size:20px" v-for="(level,index) in dane.woodLevel">•</span><span>
+<p>Tartak:<span style="font-size:20px" v-for="(level,index) in $root.dane.woodLevel">•</span><span>
             Produkcja: {{$root.dane.woodfactor * 3600 }}/h</span>
             <button @click="upgrade('wood')">Upgrade ({{$root.costs.woodUpgrade[0]}}D {{$root.costs.woodUpgrade[1]}}K {{$root.costs.woodUpgrade[2]}}Ż)</button>
         </p>
-        <p>Kamieniołom:<span style="font-size:20px" v-for="(level,index) in dane.stoneLevel">•</span>
+        <p>Kamieniołom:<span style="font-size:20px" v-for="(level,index) in $root.dane.stoneLevel">•</span>
             <span>Produkcja: {{$root.dane.stonefactor * 3600}}/h </span>
             <button @click="upgrade('stone')" >Upgrade  ({{$root.costs.stoneUpgrade[0]}}D {{$root.costs.stoneUpgrade[1]}}K {{$root.costs.stoneUpgrade[2]}}Ż)</button>
         </p>
-        <p>Kopalnia rudy:<span style="font-size:20px" v-for="(level,index) in dane.ironLevel">•</span>
+        <p>Kopalnia rudy:<span style="font-size:20px" v-for="(level,index) in $root.dane.ironLevel">•</span>
             <span>Produkcja: {{$root.dane.ironfactor * 3600}}/h </span>
             <button @click="upgrade('iron')" >Upgrade  ({{$root.costs.ironUpgrade[0]}}D {{$root.costs.ironUpgrade[1]}}K {{$root.costs.ironUpgrade[2]}}Ż)</button>
         </p>
