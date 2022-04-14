@@ -55,7 +55,7 @@ let app = new Vue({
 
               
 
-                if(res.data.length == 12){
+                if(res.data.length == 12 || res.data.length == 11){
                     console.log('JOŁ JOŁ ZALOGOWANY');
                     location.reload();
                 }else{
