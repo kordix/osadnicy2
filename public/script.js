@@ -13,7 +13,7 @@ let app = new Vue({
 
         loadData(){
             let self = this
-             axios.get('/api/readuser.php').then((res)=>{self.dane = res.data; this.$root.dane = this.dane});
+             axios.get('/api/readuser.php').then((res)=>{self.dane = res.data; this.$root.dane = this.dane}).then((res)=>self.checkMax());
          },
         resHack(){
             // this.$store.commit('resHack');
