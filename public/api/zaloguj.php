@@ -12,20 +12,24 @@ $login = $dane->login;
 $password = md5($dane->password);
 
 //REPLACE
-$query_run = $dbh->prepare("SELECT id FROM users where login = '$login' and password = '$password'");
+$query_run = $dbh->prepare("SELECT id,`password` FROM users where login = ?");
 $query_run->execute();
 
-class dummy {}
+$rows = $query_run->fetchAll(PDO::FETCH_ASSOC);
 
-$rows = $query_run->fetchAll(PDO::FETCH_CLASS, "dummy");
-
-if(count($rows)>0){
+if (password_verify($rows[0]->password, $dane->password)){
     $_SESSION['zalogowany'] = true;
     $_SESSION['id'] = $rows[0]->id;
+}
 
-    echo 'ZALOGOWANY';
-}else{
-    return 0;
+
+//if(count($rows)>0){
+  //  $_SESSION['zalogowany'] = true;
+   // $_SESSION['id'] = $rows[0]->id;
+
+    //echo 'ZALOGOWANY';
+//}else{
+   // return 0;
 }
 
 
